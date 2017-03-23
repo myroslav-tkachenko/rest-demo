@@ -1,6 +1,7 @@
 {
     "name": "root/rest-demo",
     "require": {
-        "slim/slim": "^3.8"
+        "slim/slim": "^3.8",
+        "slim/php-view": "^2.2"
     }
 }
