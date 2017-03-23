@@ -1,0 +1,6 @@
+{
+    "name": "root/rest-demo",
+    "require": {
+        "slim/slim": "^3.8"
+    }
+}
