@@ -10,7 +10,8 @@ $app = new \Slim\App;
 $container = $app->getContainer();
 $container['renderer'] = new PhpRenderer("../templates");
 
-$app->get('/', 'App\Controller\Items:home');
+$app->get('/', 'App\Controller\Front:home');
+
 $app->get('/items', 'App\Controller\Items:list');
 $app->get('/items/{id}', 'App\Controller\Items:listItem');
 $app->post('/items', 'App\Controller\Items:createItem');

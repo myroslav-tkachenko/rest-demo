@@ -11,13 +11,6 @@ class Items
         $this->container = $container;
     }
 
-    public function home($request, $response)
-    {
-        $data = ['title' => 'My Application'];
-        $response = $this->container->renderer->render($response, "/index.tpl.php", $data);
-        return $response;
-    }
-
     public function list($request, $response)
     {
         $response = $response->getBody()->write('Items list');
