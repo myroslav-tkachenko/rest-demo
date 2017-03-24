@@ -12,10 +12,12 @@ $container['renderer'] = new PhpRenderer("../templates");
 
 $app->get('/', 'App\Controller\Front:home');
 
-$app->get('/items', 'App\Controller\Items:list');
-$app->get('/items/{id}', 'App\Controller\Items:listItem');
-$app->post('/items', 'App\Controller\Items:createItem');
-$app->put('/items/{id}', 'App\Controller\Items:updateItem');
-$app->delete('/items/{id}', 'App\Controller\Item:deleteItem');
+$app->group('/items', function() {
+    $this->get('', 'App\Controller\Items:list');
+    $this->get('/{id}', 'App\Controller\Items:listItem');
+    $this->post('', 'App\Controller\Items:createItem');
+    $this->put('/{id}', 'App\Controller\Items:updateItem');
+    $this->delete('/{id}', 'App\Controller\Items:deleteItem');
+});
 
 $app->run();
