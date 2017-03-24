@@ -22,7 +22,9 @@ class Items
 
     public function get($request, $response, $args)
     {
-        $response = $response->getBody()->write('Item ' . $args['id']);
+        $mapper = new ItemMapper();
+        $item = $mapper->get($args['id']);
+        $response = $response->getBody()->write(print_r($item, 1));
         return $response;
     }
 
@@ -30,8 +32,8 @@ class Items
         $data = $request->getParsedBody();
         $item = new ItemEntity($data);
         $mapper = new ItemMapper();
-        $mapper->save($item);
-        $response = $response->getBody()->write(print_r($item, 1));
+        $item_id = $mapper->save($item);
+        $response = $response->withRedirect('/items' . $item_id);
         return $response;
     }
 
