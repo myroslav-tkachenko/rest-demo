@@ -11,30 +11,10 @@ $container = $app->getContainer();
 $container['renderer'] = new PhpRenderer("../templates");
 
 $app->get('/', 'App\Controller\Items:home');
-
-$app->get('/items', function (Request $request, Response $response) {
-    $response = $response->getBody()->write('Items list');
-    return $response;
-});
-
-$app->get('/items/{id}', function (Request $request, Response $response, $args) {
-    $response = $response->getBody()->write('Item ' . $args['id']);
-    return $response;
-});
-
-$app->post('/items', function (Request $request, Response $response) {
-    $response = $response->getBody()->write('Create item');
-    return $response;
-});
-
-$app->put('/items/{id}', function (Request $request, Response $response, $args) {
-    $response = $response->getBody()->write('Update item' . $args['id']);
-    return $response;
-});
-
-$app->delete('/items/{id}', function (Request $request, Response $response, $args) {
-    $response = $response->getBody()->write('Delete item' . $args['id']);
-    return $response;
-});
+$app->get('/items', 'App\Controller\Items:list');
+$app->get('/items/{id}', 'App\Controller\Items:listItem');
+$app->post('/items', 'App\Controller\Items:createItem');
+$app->put('/items/{id}', 'App\Controller\Items:updateItem');
+$app->delete('/items/{id}', 'App\Controller\Item:deleteItem');
 
 $app->run();
