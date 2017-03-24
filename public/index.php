@@ -12,12 +12,20 @@ $container['renderer'] = new PhpRenderer("../templates");
 
 $app->get('/', 'App\Controller\Front:home');
 
-$app->group('/items', function() {
+$app->group('/items', function () {
     $this->get('', 'App\Controller\Items:all');
     $this->get('/{id}', 'App\Controller\Items:get');
     $this->post('', 'App\Controller\Items:create');
     $this->put('/{id}', 'App\Controller\Items:update');
     $this->delete('/{id}', 'App\Controller\Items:delete');
-});
+})
+// ->add(function ($request, $response, $next) {
+//     if ($request->getHeader('HTTP_AUTHORIZATION')[0] == 'token_123') {
+//         $response = $next($request, $response);
+//     } else {
+//         $response = $response->withStatus(403);
+//     }
+//     return $response;
+// });
 
 $app->run();
