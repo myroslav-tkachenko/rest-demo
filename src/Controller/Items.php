@@ -24,7 +24,8 @@ class Items
     {
         $mapper = new ItemMapper();
         $item = $mapper->get($args['id']);
-        $response = $response->getBody()->write(print_r($item, 1));
+        // $response = $response->withHeader('Content-type', 'application/json');
+        $response = $response->withJson($item);
         return $response;
     }
 
@@ -33,7 +34,7 @@ class Items
         $item = new ItemEntity($data);
         $mapper = new ItemMapper();
         $item_id = $mapper->save($item);
-        $response = $response->withRedirect('/items' . $item_id);
+        $response = $response->withRedirect('/items/' . $item_id);
         return $response;
     }
 

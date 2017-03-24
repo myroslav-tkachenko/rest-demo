@@ -24,9 +24,9 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="/items/123" method="POST" class="form-horizontal" role="form">
+                    <form action="/items" method="POST" class="form-horizontal" role="form">
 
-                        <input type="hidden" name="_METHOD" value="PUT"/>
+                        <!--<input type="hidden" name="_METHOD" value="PUT"/>-->
                         
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Name:</label>
@@ -36,9 +36,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="pass" class="col-sm-2 control-label">Password:</label>
+                            <label for="link" class="col-sm-2 control-label">Link:</label>
                             <div class="col-sm-10">
-                                <input type="password" name="pass" id="pass" class="form-control" value="" required="required" title="">
+                                <input type="text" name="link" id="link" class="form-control" value="" required="required" title="">
                             </div>
                         </div>
 
