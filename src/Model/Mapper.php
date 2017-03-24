@@ -10,6 +10,7 @@ abstract class Mapper
 
     public function __construct()
     {
-        $this->db = new \PDO("mysql:host=localhost;dbname=rest_items;charset=utf8", "root", "123");;
+        $this->db = new \PDO("mysql:host=localhost;dbname=rest_items;charset=utf8", "root", "123");
+        // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 }

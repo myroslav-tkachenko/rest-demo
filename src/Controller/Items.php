@@ -47,7 +47,13 @@ class Items
     }
 
     public function delete($request, $response, $args) {
-        $response = $response->getBody()->write('Delete item' . $args['id']);
+        $mapper = new ItemMapper();
+        $result = $mapper->delete($args['id']);        
+
+        if ($result) {
+            $response = $response->withStatus(204);
+        }
+        
         return $response;
     }
 }

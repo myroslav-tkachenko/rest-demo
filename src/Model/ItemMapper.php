@@ -40,4 +40,13 @@ class ItemMapper extends Mapper
 
         return $row;
     }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM items WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
+        
+        return $stmt->rowCount();
+    }
 }
