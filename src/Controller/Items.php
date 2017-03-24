@@ -42,7 +42,11 @@ class Items
 
     public function update($request, $response, $args) {
         $data = $request->getParsedBody();
-        $response = $response->getBody()->write('Update item' . $args['id'] . "\n" . print_r($data, 1));
+        $mapper = new ItemMapper();
+        $data['id'] = $args['id'];
+        $item = new ItemEntity($data);
+        $item_id = $mapper->save($item);
+        $response = $response->withRedirect('/items/' . $item_id);
         return $response;
     }
 

@@ -11,6 +11,9 @@ class ItemMapper extends Mapper
     public function save(ItemEntity $item)
     {
         $sql = "INSERT INTO items (name, link) VALUES (?, ?)";
+        if ($item->getId()) {
+            $sql = "UPDATE items SET name = ?, link = ? WHERE id = {$item->getId()}";
+        }
         $stmt = $this->db->prepare($sql);
 
         $stmt->execute([
