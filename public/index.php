@@ -10,11 +10,7 @@ $app = new \Slim\App;
 $container = $app->getContainer();
 $container['renderer'] = new PhpRenderer("../templates");
 
-$app->get('/', function(Request $request, Response $response) {
-    $data = ['title' => 'My Application'];
-    $response = $this->renderer->render($response, "/index.tpl.php", $data);
-    return $response;
-});
+$app->get('/', 'App\Controller\Items:home');
 
 $app->get('/items', function (Request $request, Response $response) {
     $response = $response->getBody()->write('Items list');
