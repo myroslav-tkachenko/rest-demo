@@ -16,7 +16,9 @@ class Items
 
     public function all($request, $response)
     {
-        $response = $response->getBody()->write('Items list');
+        $mapper = new ItemMapper();
+        $items = $mapper->all();
+        $response = $response->withJson($items);
         return $response;
     }
 

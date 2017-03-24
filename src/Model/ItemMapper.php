@@ -21,6 +21,16 @@ class ItemMapper extends Mapper
         return $this->db->lastInsertId();
     }
 
+    public function all()
+    {
+        $sql = "SELECT * FROM items";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rows;
+    }
+
     public function get($id)
     {
         $sql = "SELECT * FROM items WHERE id = ?";
