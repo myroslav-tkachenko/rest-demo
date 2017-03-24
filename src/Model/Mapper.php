@@ -2,12 +2,14 @@
 
 namespace App\Model;
 
+use \PDO;
+
 abstract class Mapper
 {
     protected $db;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = new \PDO("mysql:host=localhost;dbname=rest_items;charset=utf8", "root", "123");;
     }
 }

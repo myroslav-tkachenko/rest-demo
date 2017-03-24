@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Model\ItemEntity;
+use App\Model\ItemMapper;
+
 class Items
 {
     protected $container;
@@ -25,7 +28,10 @@ class Items
 
     public function create($request, $response) {
         $data = $request->getParsedBody();
-        $response = $response->getBody()->write(print_r($data, 1));
+        $item = new ItemEntity($data);
+        $mapper = new ItemMapper();
+        $mapper->save($item);
+        $response = $response->getBody()->write(print_r($item, 1));
         return $response;
     }
 

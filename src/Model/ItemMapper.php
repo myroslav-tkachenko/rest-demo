@@ -7,7 +7,7 @@ use App\Model\ItemEntity;
 
 class ItemMapper extends Mapper
 {
-    public function save($item)
+    public function save(ItemEntity $item)
     {
         $sql = "INSERT INTO items (name, link) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
