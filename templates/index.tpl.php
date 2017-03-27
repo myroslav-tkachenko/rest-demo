@@ -24,7 +24,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="/items" method="POST" class="form-horizontal" role="form">
+                    <form action="/items" method="POST" class="form-horizontal" role="form" v-on:submit.prevent="postItem">
 
                         <!--<input type="hidden" name="_METHOD" value="PUT"/>-->
                         
