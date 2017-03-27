@@ -31,14 +31,14 @@
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="name" id="name" class="form-control" value="" required="required" title="">
+                                <input type="text" name="name" id="name" class="form-control" value="" required="required" title="" v-model="item.name">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="link" class="col-sm-2 control-label">Link:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="link" id="link" class="form-control" value="" required="required" title="">
+                                <input type="text" name="link" id="link" class="form-control" value="" required="required" title="" v-model="item.link">
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
                     </form>
                 </div>
             </div>
-
+            {{ item }}
         </div>
 
         <!-- jQuery -->
@@ -64,17 +64,24 @@
 
         <script>
             Vue.http.options.root = '/items';
-            
+
             var app = new Vue({
                 el: '#rest-client',
                 data: {
-                    message: 'REST Demo'
+                    message: 'REST Demo',
+                    item: {
+                        name: '',
+                        link: ''
+                    }
                 },
                 methods: {
                     getItems: function() {
                         this.$http.get('/items').then(response => {
                             this.message = response.body;
                         });
+                    },
+                    postItem: function() {
+
                     }
                 }
             });
