@@ -17,8 +17,8 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container">
-            <h1 class="text-center"><?=$title?></h1>
+        <div class="container" id="rest-client">
+            <h1 class="text-center">{{ message }}</h1>
 
             <hr>
 
@@ -58,5 +58,17 @@
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- Bootstrap JavaScript -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <!-- Vue.js -->
+        <script src="https://unpkg.com/vue"></script>
+
+        <script>
+            var app = new Vue({
+                el: '#rest-client',
+                data: {
+                    message: 'Hello Vue!'
+                }
+            });
+        </script>
+        
     </body>
 </html>
