@@ -94,7 +94,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-10 col-sm-offset-2">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Add</button>
                             </div>
                         </div>
 
@@ -145,6 +145,8 @@
                     postItem: function() {
                         this.$http.post('/items', this.newItem).then(function() {
                             this.getItems();
+                            this.newItem.name = "";
+                            this.newItem.link = "";
                         });
                     },
                     deleteItem: function(item) {
