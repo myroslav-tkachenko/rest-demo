@@ -28,10 +28,44 @@
                             <a href="#!" class="pull-right" v-on:click="deleteItem(item)">
                                 X
                             </a>
+                            <a href="#!" class="pull-right" v-on:click="editItem(item)">
+                                Edit&nbsp;
+                            </a>
                         </h3>
                   </div>
                   <div class="panel-body">
                       <a v-bind:href="item.link" target="_blank">{{ item.link }}</a>
+                      
+                      <div class="panel panel-default" v-if="showEditForm(item)">
+                          <div class="panel-body">
+
+                            <form action="/items" method="POST" class="form-horizontal" role="form" v-on:submit.prevent="putItem">
+
+                                <!--<input type="hidden" name="_METHOD" value="PUT"/>-->
+                                
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2 control-label">Name:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="name" id="name" class="form-control" value="" required="required" title="" v-model="editedItem.name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="link" class="col-sm-2 control-label">Link:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="link" id="link" class="form-control" value="" required="required" title="" v-model="editedItem.link">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-10 col-sm-offset-2">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                          </div>
+                      </div>
                   </div>
             </div>
             
@@ -67,7 +101,7 @@
                     </form>
                 </div>
             </div>
-            {{ items }}
+            {{ editedItem }}
         </div>
 
         <!-- jQuery -->
@@ -90,8 +124,19 @@
                         name: '',
                         link: ''
                     },
+                    editedItem: null
+                },
+                computed: {
+
                 },
                 methods: {
+                    showEditForm: function(item) {
+                        if (this.editedItem === null) return false;
+                        return this.editedItem.id === item.id;
+                    },
+                    editItem: function(item) {
+                        this.editedItem = item;
+                    },
                     getItems: function() {
                         this.$http.get('/items').then(response => {
                             this.items = response.body;
@@ -104,6 +149,12 @@
                     },
                     deleteItem: function(item) {
                         this.$http.delete('/items/' + item.id).then(function() {
+                            this.getItems();
+                        });
+                    },
+                    putItem: function() {
+                        this.$http.put('/items/' + this.editedItem.id, this.editedItem).then(function() {
+                            this.editedItem = null;
                             this.getItems();
                         });
                     }

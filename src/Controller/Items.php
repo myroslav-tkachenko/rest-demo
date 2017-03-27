@@ -46,7 +46,7 @@ class Items
         $data['id'] = $args['id'];
         $item = new ItemEntity($data);
         $item_id = $mapper->save($item);
-        $response = $response->withRedirect('/items/' . $item_id);
+        // $response = $response->withRedirect('/items/' . $item_id);
         return $response;
     }
 
