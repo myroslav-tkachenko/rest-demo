@@ -20,6 +20,17 @@
         <div class="container" id="rest-client">
             <h1 class="text-center">{{ message }}</h1>
 
+            
+            <div class="panel panel-info" v-for="item in items">
+                  <div class="panel-heading">
+                        <h3 class="panel-title">{{ item.name }}</h3>
+                  </div>
+                  <div class="panel-body">
+                      {{ item.link }}
+                  </div>
+            </div>
+            
+
             <hr>
 
             <div class="panel panel-default">
@@ -31,14 +42,14 @@
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="name" id="name" class="form-control" value="" required="required" title="" v-model="item.name">
+                                <input type="text" name="name" id="name" class="form-control" value="" required="required" title="" v-model="newItem.name">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="link" class="col-sm-2 control-label">Link:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="link" id="link" class="form-control" value="" required="required" title="" v-model="item.link">
+                                <input type="text" name="link" id="link" class="form-control" value="" required="required" title="" v-model="newItem.link">
                             </div>
                         </div>
 
@@ -51,7 +62,7 @@
                     </form>
                 </div>
             </div>
-            {{ item }}
+            {{ items }}
         </div>
 
         <!-- jQuery -->
@@ -69,19 +80,20 @@
                 el: '#rest-client',
                 data: {
                     message: 'REST Demo',
-                    item: {
+                    items: [],
+                    newItem: {
                         name: '',
                         link: ''
-                    }
+                    },
                 },
                 methods: {
                     getItems: function() {
                         this.$http.get('/items').then(response => {
-                            this.message = response.body;
+                            this.items = response.body;
                         });
                     },
                     postItem: function() {
-                        this.$http.post('/items', this.item).then(function() {
+                        this.$http.post('/items', this.newItem).then(function() {
                             this.getItems();
                         });
                     }
