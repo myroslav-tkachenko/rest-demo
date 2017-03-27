@@ -23,10 +23,15 @@
             
             <div class="panel panel-info" v-for="item in items">
                   <div class="panel-heading">
-                        <h3 class="panel-title">{{ item.name }}</h3>
+                        <h3 class="panel-title">
+                            {{ item.name }}
+                            <a href="#!" class="pull-right" v-on:click="deleteItem(item)">
+                                X
+                            </a>
+                        </h3>
                   </div>
                   <div class="panel-body">
-                      {{ item.link }}
+                      <a v-bind:href="item.link" target="_blank">{{ item.link }}</a>
                   </div>
             </div>
             
@@ -94,6 +99,11 @@
                     },
                     postItem: function() {
                         this.$http.post('/items', this.newItem).then(function() {
+                            this.getItems();
+                        });
+                    },
+                    deleteItem: function(item) {
+                        this.$http.delete('/items/' + item.id).then(function() {
                             this.getItems();
                         });
                     }
