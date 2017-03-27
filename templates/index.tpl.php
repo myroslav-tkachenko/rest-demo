@@ -60,15 +60,21 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <!-- Vue.js -->
         <script src="https://unpkg.com/vue"></script>
+        <script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script>
 
         <script>
+            Vue.http.options.root = '/items';
             var app = new Vue({
                 el: '#rest-client',
                 data: {
-                    message: 'Hello Vue!'
+                    message: 'REST Demo'
                 }
             });
+
+            Vue.http.get('/items').then(response => {
+               app.message = response.body;
+            });
         </script>
-        
+
     </body>
 </html>
