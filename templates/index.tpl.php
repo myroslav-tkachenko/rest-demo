@@ -81,7 +81,9 @@
                         });
                     },
                     postItem: function() {
-
+                        this.$http.post('/items', this.item).then(function() {
+                            this.getItems();
+                        });
                     }
                 }
             });
