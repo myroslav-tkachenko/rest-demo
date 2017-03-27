@@ -64,16 +64,22 @@
 
         <script>
             Vue.http.options.root = '/items';
+            
             var app = new Vue({
                 el: '#rest-client',
                 data: {
                     message: 'REST Demo'
+                },
+                methods: {
+                    getItems: function() {
+                        this.$http.get('/items').then(response => {
+                            this.message = response.body;
+                        });
+                    }
                 }
             });
 
-            Vue.http.get('/items').then(response => {
-               app.message = response.body;
-            });
+            app.getItems();
         </script>
 
     </body>
