@@ -36,8 +36,8 @@ class Items
         $item = new ItemEntity($data);
         $mapper = new ItemMapper();
         $item_id = $mapper->save($item);
-        $response = $response->withRedirect('/items/' . $item_id);
-        return $response;
+        // $response = $response->withRedirect('/items/' . $item_id);
+        return $response->withStatus(201);
     }
 
     public function update($request, $response, $args) {
