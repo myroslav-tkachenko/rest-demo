@@ -31,7 +31,8 @@ class Items
         return $response;
     }
 
-    public function create($request, $response) {
+    public function create($request, $response)
+    {
         $data = $request->getParsedBody();
         $item = new ItemEntity($data);
         $mapper = new ItemMapper();
@@ -40,7 +41,8 @@ class Items
         return $response->withStatus(201);
     }
 
-    public function update($request, $response, $args) {
+    public function update($request, $response, $args)
+    {
         $data = $request->getParsedBody();
         $mapper = new ItemMapper();
         $data['id'] = $args['id'];
@@ -50,9 +52,10 @@ class Items
         return $response;
     }
 
-    public function delete($request, $response, $args) {
+    public function delete($request, $response, $args)
+    {
         $mapper = new ItemMapper();
-        $result = $mapper->delete($args['id']);        
+        $result = $mapper->delete($args['id']);
 
         if ($result) {
             $response = $response->withStatus(204);
