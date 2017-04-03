@@ -135,6 +135,10 @@
                         return this.editedItem.id === item.id;
                     },
                     editItem: function(item) {
+                        if (this.editedItem) {
+                           this.editedItem = null;
+                           return;
+                        }
                         this.editedItem = item;
                     },
                     getItems: function() {
