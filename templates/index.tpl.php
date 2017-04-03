@@ -15,9 +15,12 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <style>
+            [v-cloak] { display: none }
+        </style>
     </head>
     <body>
-        <div class="container" id="rest-client">
+        <div class="container" id="rest-client" v-cloak>
             <h1 class="text-center">{{ message }}</h1>
 
             
